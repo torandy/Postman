@@ -1,0 +1,610 @@
+{
+	"info": {
+		"_postman_id": "b43648ca-1c15-4bf9-a46d-a79764a9c494",
+		"name": "Sample Work",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Endpoints",
+			"item": [
+				{
+					"name": "Weatherstack",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{currentWeatherURL}}?access_key={{access_key}}&query=New York",
+							"host": [
+								"{{currentWeatherURL}}"
+							],
+							"query": [
+								{
+									"key": "access_key",
+									"value": "{{access_key}}"
+								},
+								{
+									"key": "query",
+									"value": "New York"
+								}
+							]
+						},
+						"description": "**Sample Weatherstack API:** [https://weatherstack.com/documentation](https://weatherstack.com/documentation)\n\nTakes the following parameters:\n\n1.  access_key: static value based on the user\n2.  query: input US city from the parameters\n    \n\nVariables: use the Environment variable \"Weatherstack\""
+					},
+					"response": [
+						{
+							"name": "Weatherstack",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{currentWeatherURL}}?access_key={{access_key}}&query=New York",
+									"host": [
+										"{{currentWeatherURL}}"
+									],
+									"query": [
+										{
+											"key": "access_key",
+											"value": "{{access_key}}"
+										},
+										{
+											"key": "query",
+											"value": "New York"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 13 Jan 2022 15:35:59 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; Charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-apilayer-transaction-id",
+									"value": "f59a6155-221c-44f4-9b0e-e7b0e36d8cce"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "x-request-time",
+									"value": "0.016"
+								},
+								{
+									"key": "CF-Cache-Status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=ys76E85ZT2QxpWRSD7EDkDU7l2v8e1dXGnHv3VchNz2Q%2FmJDUL9OOkgelozLAnbNLi5Z71%2B%2BNkAzEbHvxulOFb8403O1VAr2QM7lISOSI3Q9a5oDwM3Kp7RrZ97IGK0BFLd7fRkZ4g%3D%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "NEL",
+									"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "6ccfb2965cb9f989-YYZ"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400, h3-29=\":443\"; ma=86400, h3-28=\":443\"; ma=86400, h3-27=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"request\": {\n        \"type\": \"City\",\n        \"query\": \"New York, United States of America\",\n        \"language\": \"en\",\n        \"unit\": \"m\"\n    },\n    \"location\": {\n        \"name\": \"New York\",\n        \"country\": \"United States of America\",\n        \"region\": \"New York\",\n        \"lat\": \"40.714\",\n        \"lon\": \"-74.006\",\n        \"timezone_id\": \"America/New_York\",\n        \"localtime\": \"2022-01-13 10:32\",\n        \"localtime_epoch\": 1642069920,\n        \"utc_offset\": \"-5.0\"\n    },\n    \"current\": {\n        \"observation_time\": \"03:32 PM\",\n        \"temperature\": 4,\n        \"weather_code\": 116,\n        \"weather_icons\": [\n            \"https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0002_sunny_intervals.png\"\n        ],\n        \"weather_descriptions\": [\n            \"Partly cloudy\"\n        ],\n        \"wind_speed\": 9,\n        \"wind_degree\": 70,\n        \"wind_dir\": \"ENE\",\n        \"pressure\": 1018,\n        \"precip\": 0,\n        \"humidity\": 62,\n        \"cloudcover\": 75,\n        \"feelslike\": 3,\n        \"uv_index\": 2,\n        \"visibility\": 16,\n        \"is_day\": \"yes\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Scripts",
+			"item": [
+				{
+					"name": "Weatherstack Script",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Validate status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate response time is under 5 secs\", () => {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate the Content-Type is application/json\", () => {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+									"});\r",
+									"\r",
+									"// Tests for response body object lengths\r",
+									"const totalNumberOfRecords = Object.keys(jsonData).length;\r",
+									"const expectedTotalNumberOfRecords = pm.iterationData.get(\"expectedTotalNumberOfRecords\");\r",
+									"const requestObjectLength = Object.keys(pm.response.json().request).length;\r",
+									"const expectedRequestObjectLength = pm.iterationData.get(\"expectedRequestObjectLength\");\r",
+									"const locationObjectLength = Object.keys(pm.response.json().location).length;\r",
+									"const expectedLocationObjectLength = pm.iterationData.get(\"expectedLocationObjectLength\");\r",
+									"const currentObjectLength = Object.keys(pm.response.json().current).length;\r",
+									"const expectedCurrentObjectLength = pm.iterationData.get(\"expectedCurrentObjectLength\");\r",
+									"pm.test(\"Validate the all response body lenghts\", () => {\r",
+									"    if (totalNumberOfRecords != expectedTotalNumberOfRecords) {\r",
+									"        throw new Error(\"Response body does not match.  Skipping the rest of the tests.\");\r",
+									"    }\r",
+									"    let skipBodyLengthTest = false;\r",
+									"    pm.test(`Validate the number of records in the request object is ${expectedRequestObjectLength}`, () => {\r",
+									"        if (requestObjectLength != expectedRequestObjectLength) {\r",
+									"            skipBodyLengthTest = true\r",
+									"            throw new Error(\"Number of request objects does not match.  Skipping this test\");\r",
+									"        }\r",
+									"        pm.expect(requestObjectLength).to.equal(expectedRequestObjectLength);\r",
+									"    });\r",
+									"    (skipBodyLengthTest ? pm.test.skip : pm.test)(`Validate the number of recrods in the location object is ${expectedLocationObjectLength}`, () => {\r",
+									"        if (locationObjectLength != expectedLocationObjectLength) {\r",
+									"            skipBodyLengthTest = true\r",
+									"            throw new Error(\"Number of location objects does not match.  Skipping this test\");\r",
+									"        }\r",
+									"        pm.expect(locationObjectLength).to.equal(expectedLocationObjectLength);\r",
+									"    });\r",
+									"    (skipBodyLengthTest ? pm.test.skip : pm.test)(`Validate the number of records in the current object is ${expectedCurrentObjectLength}`, () => {\r",
+									"        if (currentObjectLength != expectedCurrentObjectLength) {\r",
+									"            skipBodyLengthTest = true\r",
+									"            throw new Error(\"Number of current objects does not match.  Skipping this test\");\r",
+									"        }\r",
+									"        pm.expect(currentObjectLength).to.equal(expectedCurrentObjectLength);\r",
+									"    });\r",
+									"    pm.expect(skipBodyLengthTest).to.equal(false);\r",
+									"})\r",
+									"\r",
+									"// Test for object schema\r",
+									"const schema = {\r",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",\r",
+									"    \"default\": {},\r",
+									"    \"required\": [\r",
+									"        \"request\",\r",
+									"        \"location\",\r",
+									"        \"current\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"request\": {\r",
+									"            \"$id\": \"#/properties/request\",\r",
+									"            \"type\": \"object\",\r",
+									"            \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"            \"default\": {},\r",
+									"            \"required\": [\r",
+									"                \"type\",\r",
+									"                \"query\",\r",
+									"                \"language\",\r",
+									"                \"unit\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"type\": {\r",
+									"                    \"$id\": \"#/properties/request/properties/type\",\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": \"\"\r",
+									"                },\r",
+									"                \"query\": {\r",
+									"                    \"$id\": \"#/properties/request/properties/query\",\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": \"\"\r",
+									"                },\r",
+									"                \"language\": {\r",
+									"                    \"$id\": \"#/properties/request/properties/language\",\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": \"\"\r",
+									"                },\r",
+									"                \"unit\": {\r",
+									"                    \"$id\": \"#/properties/request/properties/unit\",\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": \"\"\r",
+									"                }\r",
+									"            }\r",
+									"        },\r",
+									"        \"location\": {\r",
+									"            \"$id\": \"#/properties/location\",\r",
+									"            \"type\": \"object\",\r",
+									"            \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"            \"default\": {},\r",
+									"            \"required\": [\r",
+									"                \"name\",\r",
+									"                \"country\",\r",
+									"                \"region\",\r",
+									"                \"lat\",\r",
+									"                \"lon\",\r",
+									"                \"timezone_id\",\r",
+									"                \"localtime\",\r",
+									"                \"localtime_epoch\",\r",
+									"                \"utc_offset\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"name\": {\r",
+									"                    \"$id\": \"#/properties/location/properties/name\",\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": \"\"\r",
+									"                },\r",
+									"                \"country\": {\r",
+									"                    \"$id\": \"#/properties/location/properties/country\",\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": \"\"\r",
+									"                },\r",
+									"                \"region\": {\r",
+									"                    \"$id\": \"#/properties/location/properties/region\",\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": \"\"\r",
+									"                },\r",
+									"                \"lat\": {\r",
+									"                    \"$id\": \"#/properties/location/properties/lat\",\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": \"\"\r",
+									"                },\r",
+									"                \"lon\": {\r",
+									"                    \"$id\": \"#/properties/location/properties/lon\",\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": \"\"\r",
+									"                },\r",
+									"                \"timezone_id\": {\r",
+									"                    \"$id\": \"#/properties/location/properties/timezone_id\",\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": \"\"\r",
+									"                },\r",
+									"                \"localtime\": {\r",
+									"                    \"$id\": \"#/properties/location/properties/localtime\",\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": \"\"\r",
+									"                },\r",
+									"                \"localtime_epoch\": {\r",
+									"                    \"$id\": \"#/properties/location/properties/localtime_epoch\",\r",
+									"                    \"type\": \"integer\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": 0\r",
+									"                },\r",
+									"                \"utc_offset\": {\r",
+									"                    \"$id\": \"#/properties/location/properties/utc_offset\",\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": \"\"\r",
+									"                }\r",
+									"            }\r",
+									"        },\r",
+									"        \"current\": {\r",
+									"            \"$id\": \"#/properties/current\",\r",
+									"            \"type\": \"object\",\r",
+									"            \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"            \"default\": {},\r",
+									"            \"required\": [\r",
+									"                \"observation_time\",\r",
+									"                \"temperature\",\r",
+									"                \"weather_code\",\r",
+									"                \"weather_icons\",\r",
+									"                \"weather_descriptions\",\r",
+									"                \"wind_speed\",\r",
+									"                \"wind_degree\",\r",
+									"                \"wind_dir\",\r",
+									"                \"pressure\",\r",
+									"                \"precip\",\r",
+									"                \"humidity\",\r",
+									"                \"cloudcover\",\r",
+									"                \"feelslike\",\r",
+									"                \"uv_index\",\r",
+									"                \"visibility\",\r",
+									"                \"is_day\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"observation_time\": {\r",
+									"                    \"$id\": \"#/properties/current/properties/observation_time\",\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": \"\"\r",
+									"                },\r",
+									"                \"temperature\": {\r",
+									"                    \"$id\": \"#/properties/current/properties/temperature\",\r",
+									"                    \"type\": \"integer\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": 0\r",
+									"                },\r",
+									"                \"weather_code\": {\r",
+									"                    \"$id\": \"#/properties/current/properties/weather_code\",\r",
+									"                    \"type\": \"integer\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": 0\r",
+									"                },\r",
+									"                \"weather_icons\": {\r",
+									"                    \"$id\": \"#/properties/current/properties/weather_icons\",\r",
+									"                    \"type\": \"array\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": [],\r",
+									"                    \"items\": {\r",
+									"                        \"$id\": \"#/properties/current/properties/weather_icons/items\",\r",
+									"                        \"anyOf\": [\r",
+									"                            {\r",
+									"                                \"$id\": \"#/properties/current/properties/weather_icons/items/anyOf/0\",\r",
+									"                                \"type\": \"string\",\r",
+									"                                \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                                \"default\": \"\"\r",
+									"                            }\r",
+									"                        ]\r",
+									"                    }\r",
+									"                },\r",
+									"                \"weather_descriptions\": {\r",
+									"                    \"$id\": \"#/properties/current/properties/weather_descriptions\",\r",
+									"                    \"type\": \"array\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": [],\r",
+									"                    \"items\": {\r",
+									"                        \"$id\": \"#/properties/current/properties/weather_descriptions/items\",\r",
+									"                        \"anyOf\": [\r",
+									"                            {\r",
+									"                                \"$id\": \"#/properties/current/properties/weather_descriptions/items/anyOf/0\",\r",
+									"                                \"type\": \"string\",\r",
+									"                                \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                                \"default\": \"\"\r",
+									"                            }\r",
+									"                        ]\r",
+									"                    }\r",
+									"                },\r",
+									"                \"wind_speed\": {\r",
+									"                    \"$id\": \"#/properties/current/properties/wind_speed\",\r",
+									"                    \"type\": \"integer\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": 0\r",
+									"                },\r",
+									"                \"wind_degree\": {\r",
+									"                    \"$id\": \"#/properties/current/properties/wind_degree\",\r",
+									"                    \"type\": \"integer\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": 0\r",
+									"                },\r",
+									"                \"wind_dir\": {\r",
+									"                    \"$id\": \"#/properties/current/properties/wind_dir\",\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": \"\"\r",
+									"                },\r",
+									"                \"pressure\": {\r",
+									"                    \"$id\": \"#/properties/current/properties/pressure\",\r",
+									"                    \"type\": \"integer\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": 0\r",
+									"                },\r",
+									"                \"precip\": {\r",
+									"                    \"$id\": \"#/properties/current/properties/precip\",\r",
+									"                    \"type\": \"integer\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": 0\r",
+									"                },\r",
+									"                \"humidity\": {\r",
+									"                    \"$id\": \"#/properties/current/properties/humidity\",\r",
+									"                    \"type\": \"integer\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": 0\r",
+									"                },\r",
+									"                \"cloudcover\": {\r",
+									"                    \"$id\": \"#/properties/current/properties/cloudcover\",\r",
+									"                    \"type\": \"integer\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": 0\r",
+									"                },\r",
+									"                \"feelslike\": {\r",
+									"                    \"$id\": \"#/properties/current/properties/feelslike\",\r",
+									"                    \"type\": \"integer\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": 0\r",
+									"                },\r",
+									"                \"uv_index\": {\r",
+									"                    \"$id\": \"#/properties/current/properties/uv_index\",\r",
+									"                    \"type\": \"integer\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": 0\r",
+									"                },\r",
+									"                \"visibility\": {\r",
+									"                    \"$id\": \"#/properties/current/properties/visibility\",\r",
+									"                    \"type\": \"integer\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": 0\r",
+									"                },\r",
+									"                \"is_day\": {\r",
+									"                    \"$id\": \"#/properties/current/properties/is_day\",\r",
+									"                    \"type\": \"string\",\r",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+									"                    \"default\": \"\"\r",
+									"                }\r",
+									"            }\r",
+									"        }\r",
+									"    }\r",
+									"}\r",
+									"pm.test(\"Validate schema\", () => {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});\r",
+									"\r",
+									"// Tests for object values\r",
+									"const requestObject = jsonData.request;\r",
+									"const expectedRequestObject = pm.iterationData.get(\"expectedRequestObject\");\r",
+									"pm.test(\"Validate request object values\", () => {\r",
+									"    pm.expect(requestObject).to.eql(expectedRequestObject);\r",
+									"});\r",
+									"\r",
+									"// Note: remaining objects contain dynamic time differences thus cannot do a static expected value match.  Consider breaking into individual object values with a validation on dynamic values to include perhaps today's date value. (.to.contain(todaysDate))"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"queryCity\", pm.iterationData.get(\"queryCity\"));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{currentWeatherURL}}?access_key={{access_key}}&query={{queryCity}}",
+							"host": [
+								"{{currentWeatherURL}}"
+							],
+							"query": [
+								{
+									"key": "access_key",
+									"value": "{{access_key}}"
+								},
+								{
+									"key": "query",
+									"value": "{{queryCity}}"
+								}
+							]
+						},
+						"description": "Variables: use the Environment variable \"Weatherstack\"\n\nExecution: Execute this test script in conjunction with .\\\\dataFiles\\\\Weatherstack.json input data file."
+					},
+					"response": [
+						{
+							"name": "Weatherstack Script",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{currentWeatherURL}}?access_key={{access_key}}&query=New York",
+									"host": [
+										"{{currentWeatherURL}}"
+									],
+									"query": [
+										{
+											"key": "access_key",
+											"value": "{{access_key}}"
+										},
+										{
+											"key": "query",
+											"value": "New York"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 13 Jan 2022 18:55:36 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; Charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-apilayer-transaction-id",
+									"value": "ab58bdcf-a9c0-4cfb-a4bc-2b3f6fce3613"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "x-request-time",
+									"value": "0.452"
+								},
+								{
+									"key": "CF-Cache-Status",
+									"value": "DYNAMIC"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=VdgKu09fuEYzjngrkP958dt1MG2Q5LM8cBrM5xEYzzFzeGZ%2BN5ilX%2Fa1oOHShdP%2F90LnI4qGtQ%2Bb0mgfxWy77U%2FYqKnF%2ByBy%2BKX%2Fkmt6A6Jua2TL8vUsEcYjcCS04G132kbJeHUElQ%3D%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "NEL",
+									"value": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+								},
+								{
+									"key": "Server",
+									"value": "cloudflare"
+								},
+								{
+									"key": "CF-RAY",
+									"value": "6cd0d6f98d312d55-ORD"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=86400, h3-29=\":443\"; ma=86400, h3-28=\":443\"; ma=86400, h3-27=\":443\"; ma=86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"request\": {\n        \"type\": \"City\",\n        \"query\": \"New York, United States of America\",\n        \"language\": \"en\",\n        \"unit\": \"m\"\n    },\n    \"location\": {\n        \"name\": \"New York\",\n        \"country\": \"United States of America\",\n        \"region\": \"New York\",\n        \"lat\": \"40.714\",\n        \"lon\": \"-74.006\",\n        \"timezone_id\": \"America/New_York\",\n        \"localtime\": \"2022-01-13 13:55\",\n        \"localtime_epoch\": 1642082100,\n        \"utc_offset\": \"-5.0\"\n    },\n    \"current\": {\n        \"observation_time\": \"06:55 PM\",\n        \"temperature\": 7,\n        \"weather_code\": 116,\n        \"weather_icons\": [\n            \"https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0002_sunny_intervals.png\"\n        ],\n        \"weather_descriptions\": [\n            \"Partly cloudy\"\n        ],\n        \"wind_speed\": 13,\n        \"wind_degree\": 60,\n        \"wind_dir\": \"ENE\",\n        \"pressure\": 1015,\n        \"precip\": 0,\n        \"humidity\": 51,\n        \"cloudcover\": 75,\n        \"feelslike\": 7,\n        \"uv_index\": 2,\n        \"visibility\": 16,\n        \"is_day\": \"yes\"\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "queryCity",
+			"value": ""
+		}
+	]
+}
